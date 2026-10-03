@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+/* A4 Print exact dimensions and print cleanup */
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  body {
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .cv-page {
+    box-shadow: none !important;
+    margin: 0 !important;
+    page-break-after: always;
+    break-after: page;
+    width: 210mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    overflow: hidden !important;
+  }
+
+  .cv-page:last-child {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(20, 24, 33, 0.4);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.5);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.8);
+}
+
+/* Light / Dark Mode System */
+html.light {
+  color-scheme: light;
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+html.dark {
+  color-scheme: dark;
+  background-color: #090b10;
+  color: #e2e8f0;
+}
+
+/* High contrast inputs and panels in light mode (applied only to app interface) */
+html.light :not(#cv-print-area):not(#cv-print-area *) input[type="text"],
+html.light :not(#cv-print-area):not(#cv-print-area *) input[type="email"],
+html.light :not(#cv-print-area):not(#cv-print-area *) input[type="number"],
+html.light :not(#cv-print-area):not(#cv-print-area *) textarea,
+html.light :not(#cv-print-area):not(#cv-print-area *) select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+html.light :not(#cv-print-area):not(#cv-print-area *) input::placeholder,
+html.light :not(#cv-print-area):not(#cv-print-area *) textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Absolute insulation for the printable A4 CV document */
+#cv-print-area {
+  color: #1a202c !important;
+  background-color: #ffffff !important;
+}

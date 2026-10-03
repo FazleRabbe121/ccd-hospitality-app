@@ -1,0 +1,93 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny all access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Test connection doc used to verify database connectivity
+    match /test/connection {
+      allow read: if true;
+    }
+
+    // Dynamic CV Users & Accounts (Gmail + 5-digit passcode + Developer code C++Rabbe)
+    match /cv_accounts/{accountId} {
+      allow read, write: if true;
+      match /{subcollection=**} {
+        allow read, write: if true;
+      }
+    }
+
+    match /cv_users/{phoneNumber} {
+      allow read, write: if true;
+      match /{subcollection=**} {
+        allow read, write: if true;
+      }
+    }
+
+    // Top-level User Document
+    match /users/{userId} {
+      allow read, write: if isOwner(userId) && isValidId(userId);
+
+      // User Profile subcollection
+      match /profile/{profileId} {
+        allow read, write: if isOwner(userId) && isValidId(userId) && isValidId(profileId);
+      }
+
+      // Relapse & Habit subcollection
+      match /relapses/{relapseId} {
+        allow read, write: if isOwner(userId) && isValidId(userId) && isValidId(relapseId);
+      }
+
+      // Finance Transactions subcollection
+      match /finance/{financeId} {
+        allow read, write: if isOwner(userId) && isValidId(userId) && isValidId(financeId);
+      }
+
+      // Family Money subcollection
+      match /familyMoney/{familyMoneyId} {
+        allow read, write: if isOwner(userId) && isValidId(userId) && isValidId(familyMoneyId);
+      }
+
+      // Recipes subcollection
+      match /recipes/{recipeId} {
+        allow read, write: if isOwner(userId) && isValidId(userId) && isValidId(recipeId);
+      }
+
+      // Monthly Reports subcollection
+      match /reports/{reportId} {
+        allow read, write: if isOwner(userId) && isValidId(userId) && isValidId(reportId);
+      }
+
+      // Settings subcollection
+      match /settings/{settingId} {
+        allow read, write: if isOwner(userId) && isValidId(userId) && isValidId(settingId);
+      }
+
+      // Backups subcollection
+      match /backups/{backupId} {
+        allow read, write: if isOwner(userId) && isValidId(userId) && isValidId(backupId);
+      }
+
+      // Multi-CV Library subcollection
+      match /cvLibrary/{docId} {
+        allow read, write: if isOwner(userId) && isValidId(userId);
+      }
+    }
+  }
+}

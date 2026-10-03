@@ -1,0 +1,19 @@
+<resources>
+    <!-- Royal Dark Palette -->
+    <color name="royal_black">#0B0C10</color>
+    <color name="jet_black">#12141A</color>
+    <color name="charcoal_grey">#1E222D</color>
+    <color name="midnight_blue">#0F1B2B</color>
+
+    <!-- Metallic Gold & Accents -->
+    <color name="metallic_gold">#D4AF37</color>
+    <color name="gold_light">#F3E5AB</color>
+    <color name="gold_dark">#AA771C</color>
+    <color name="champagne">#FDF8F0</color>
+
+    <!-- Functional Accents -->
+    <color name="emerald_green">#10B981</color>
+    <color name="deep_burgundy">#831843</color>
+    <color name="rose_gold">#B76E79</color>
+    <color name="platinum_silver">#E2E8F0</color>
+</resources>

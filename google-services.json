@@ -1,0 +1,34 @@
+{
+  "project_info": {
+    "project_number": "579992341283",
+    "project_id": "gen-lang-client-0382607670",
+    "storage_bucket": "gen-lang-client-0382607670.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579992341283:android:f7ff61e0e1090d48249a96",
+        "android_client_info": {
+          "package_name": "com.ccd.abetteryou"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "579992341283-9ffaaafetohd64qetjm279mnjq9gqr3m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADUuXhzRmUcEh64zidrgWbkioyss3sdCQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

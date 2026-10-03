@@ -1,0 +1,6 @@
+{
+  "name": "CCD — A Better You Every Day",
+  "description": "Premium personal growth, habit tracking, finance, recipe library, and AI reporting application.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

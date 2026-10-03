@@ -1,0 +1,19 @@
+{
+  "name": "CCD — A Better You Every Day",
+  "short_name": "CCD",
+  "description": "Premium personal growth, habit tracking, finance, and AI reporting application.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0B0C10",
+  "theme_color": "#0B0C10",
+  "categories": ["lifestyle", "finance", "productivity"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

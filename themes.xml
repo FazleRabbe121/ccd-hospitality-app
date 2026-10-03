@@ -1,0 +1,7 @@
+<resources>
+    <style name="Theme.CCD" parent="android:Theme.Material.NoActionBar">
+        <item name="android:statusBarColor">@color/royal_black</item>
+        <item name="android:navigationBarColor">@color/royal_black</item>
+        <item name="android:windowBackground">@color/royal_black</item>
+    </style>
+</resources>

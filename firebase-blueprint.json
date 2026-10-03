@@ -1,0 +1,213 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile information segregated by user UID",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 256 },
+        "displayName": { "type": "string", "maxLength": 128 },
+        "photoURL": { "type": "string", "maxLength": 1024 },
+        "habitName": { "type": "string", "maxLength": 64 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId", "email"]
+    },
+    "RelapseRecord": {
+      "title": "RelapseRecord",
+      "description": "Logged relapse or streak reset event for habit tracker",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "habitName": { "type": "string", "maxLength": 64 },
+        "relapseDate": { "type": "string", "maxLength": 64 },
+        "relapseTime": { "type": "string", "maxLength": 64 },
+        "timestamp": { "type": "number" },
+        "streakDaysLost": { "type": "number" },
+        "trigger": { "type": "string", "maxLength": 256 },
+        "notes": { "type": "string", "maxLength": 1000 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "timestamp", "relapseDate"]
+    },
+    "FinanceRecord": {
+      "title": "FinanceRecord",
+      "description": "Financial income or expense transaction",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "type": { "type": "string", "enum": ["income", "expense"] },
+        "category": { "type": "string", "maxLength": 64 },
+        "amount": { "type": "number" },
+        "date": { "type": "string", "maxLength": 32 },
+        "notes": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "type", "category", "amount", "date"]
+    },
+    "FamilyMoneyRecord": {
+      "title": "FamilyMoneyRecord",
+      "description": "Record of money sent or given to family members",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "amount": { "type": "number" },
+        "recipient": { "type": "string", "maxLength": 128 },
+        "date": { "type": "string", "maxLength": 32 },
+        "notes": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "amount", "date"]
+    },
+    "RecipeRecord": {
+      "title": "RecipeRecord",
+      "description": "Recipe in the personal recipe library",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 128 },
+        "category": { "type": "string", "maxLength": 64 },
+        "ingredients": { "type": "string", "maxLength": 5000 },
+        "prepTimeMinutes": { "type": "number" },
+        "cookTimeMinutes": { "type": "number" },
+        "totalTimeMinutes": { "type": "number" },
+        "method": { "type": "string", "maxLength": 5000 },
+        "steps": { "type": "string", "maxLength": 5000 },
+        "notes": { "type": "string", "maxLength": 2000 },
+        "tags": { "type": "string", "maxLength": 500 },
+        "isFavorite": { "type": "boolean" },
+        "photoUrl": { "type": "string", "maxLength": 2048 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "name", "category"]
+    },
+    "MonthlyReportRecord": {
+      "title": "MonthlyReportRecord",
+      "description": "AI-generated monthly report and underlying stats",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "month": { "type": "string", "maxLength": 16 },
+        "dataSnapshot": { "type": "string", "maxLength": 10000 },
+        "reportContent": { "type": "string", "maxLength": 20000 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "month", "reportContent"]
+    },
+    "UserSettingsRecord": {
+      "title": "UserSettingsRecord",
+      "description": "User preferences and configuration settings",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "habitName": { "type": "string", "maxLength": 64 },
+        "habitStartDate": { "type": "string", "maxLength": 64 },
+        "currency": { "type": "string", "maxLength": 8 },
+        "theme": { "type": "string", "maxLength": 32 },
+        "autoBackup": { "type": "boolean" },
+        "googleDriveConnected": { "type": "boolean" },
+        "lastBackupAt": { "type": "string", "maxLength": 64 },
+        "notificationsEnabled": { "type": "boolean" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId"]
+    },
+    "BackupSnapshotRecord": {
+      "title": "BackupSnapshotRecord",
+      "description": "Snapshot metadata for cloud & Google Drive backup",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string" },
+        "itemCount": { "type": "number" },
+        "snapshotData": { "type": "string", "maxLength": 500000 }
+      },
+      "required": ["userId", "createdAt"]
+    },
+    "CVUser": {
+      "title": "CVUser",
+      "description": "User profile authenticated with Phone Number, Name, and Reference Code",
+      "type": "object",
+      "properties": {
+        "phoneNumber": { "type": "string", "maxLength": 64 },
+        "name": { "type": "string", "maxLength": 128 },
+        "referenceCode": { "type": "string", "maxLength": 64 },
+        "cvData": { "type": "string", "maxLength": 500000 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["phoneNumber", "name", "referenceCode"]
+    },
+    "CVAccountRecord": {
+      "title": "CVAccountRecord",
+      "description": "User account with persistent multi-CV library documents",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "maxLength": 256 },
+        "name": { "type": "string", "maxLength": 128 },
+        "passcode": { "type": "string", "maxLength": 32 },
+        "phoneNumber": { "type": "string", "maxLength": 64 },
+        "developerCode": { "type": "string", "maxLength": 64 },
+        "cvLibrary": { "type": "string", "maxLength": 2000000 },
+        "cvData": { "type": "string", "maxLength": 500000 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["email", "name"]
+    }
+  },
+  "firestore": {
+    "/cv_accounts/{accountId}": {
+      "schema": "CVAccountRecord",
+      "description": "Multi-CV library documents and profile keyed by normalized email"
+    },
+    "/cv_users/{phoneNumber}": {
+      "schema": "CVUser",
+      "description": "User document keyed by normalized phone number"
+    },
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Root user profile document"
+    },
+    "/users/{userId}/profile/{profileId}": {
+      "schema": "UserProfile",
+      "description": "User profile subcollection"
+    },
+    "/users/{userId}/relapses/{relapseId}": {
+      "schema": "RelapseRecord",
+      "description": "Relapse records subcollection segregated by UID"
+    },
+    "/users/{userId}/finance/{financeId}": {
+      "schema": "FinanceRecord",
+      "description": "Financial income and expense transactions segregated by UID"
+    },
+    "/users/{userId}/familyMoney/{familyMoneyId}": {
+      "schema": "FamilyMoneyRecord",
+      "description": "Family money gift and remittance records segregated by UID"
+    },
+    "/users/{userId}/recipes/{recipeId}": {
+      "schema": "RecipeRecord",
+      "description": "Recipe catalog segregated by UID"
+    },
+    "/users/{userId}/reports/{reportId}": {
+      "schema": "MonthlyReportRecord",
+      "description": "Generated AI monthly reports segregated by UID"
+    },
+    "/users/{userId}/settings/{settingId}": {
+      "schema": "UserSettingsRecord",
+      "description": "User configuration and preferences segregated by UID"
+    },
+    "/users/{userId}/backups/{backupId}": {
+      "schema": "BackupSnapshotRecord",
+      "description": "Backup snapshots segregated by UID"
+    }
+  }
+}
